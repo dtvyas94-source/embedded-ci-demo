@@ -11,7 +11,7 @@ class PIDController:
         self.integral +=  error * dt
         derivative = (error - self.prev_error) / dt
         self.prev_error = error
-        output = (self.kp * error) + (self.ki  self.integral) + (self.kd  derivative)
+        output = (self.kp * error) + (self.ki * self.integral) + (self.kd * derivative)
         return output
     
     def compute(self, setpoint, measurement, dt):
