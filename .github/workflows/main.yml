@@ -24,3 +24,17 @@ jobs:
 
       - name: Run tests
         run: pytest tests/ -v
+
+  docker:
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build Docker image
+        run: docker build -t pid-controller .
+
+      - name: Run tests inside Docker
+        run: docker run pid-controller
